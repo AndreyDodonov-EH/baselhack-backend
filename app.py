@@ -4,6 +4,7 @@ from openai import OpenAI
 from dotenv import load_dotenv
 import os
 from os import environ
+import requests
 
 load_dotenv()
  
@@ -23,6 +24,9 @@ def dummy_summarize():
 @app.route('/summarize', methods=['POST'])
 def summarize():
     print("Summarize route was accessed")
+
+    response = requests.get('https://www.youtube.com')
+    print(f"YouTube access status: {response.status_code}")
  
     if not request.is_json:
         return jsonify({"error": "JSON data required"}), 400
