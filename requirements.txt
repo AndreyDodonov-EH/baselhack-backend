@@ -2,4 +2,5 @@ openai
 youtube-transcript-api
 flask
 python-dotenv
-requests 
+requests
+certifi
