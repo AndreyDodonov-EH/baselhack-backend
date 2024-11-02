@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from youtube_transcript_api import YouTubeTranscriptApi
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -13,6 +14,8 @@ logger = logging.getLogger('youtube_transcript_api')
 load_dotenv()
  
 app = Flask(__name__)
+CORS(app) # Allow CORS requests from any domain
+
  
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 openai_client = OpenAI(api_key=OPENAI_API_KEY)
