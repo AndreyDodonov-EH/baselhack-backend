@@ -15,8 +15,11 @@ openai_client = OpenAI(api_key=OPENAI_API_KEY)
 @app.route('/', methods=['GET'])
 def home():
     return jsonify({"message": "Home route is working!"})
- 
- 
+
+@app.route('/dummy_summarize', methods=['POST'])
+def dummy_summarize():
+    return jsonify({"summary": "Your video is so cool!"})
+
 @app.route('/summarize', methods=['POST'])
 def summarize():
     print("Summarize route was accessed")
