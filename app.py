@@ -5,6 +5,10 @@ from dotenv import load_dotenv
 import os
 from os import environ
 import requests
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger('youtube_transcript_api')
 
 load_dotenv()
  
@@ -33,6 +37,7 @@ def summarize():
  
     data = request.get_json()
     video_id = data.get("video_id")
+    
  
     if not video_id:
         return jsonify({"error": "Video ID is required"}), 400
@@ -68,6 +73,7 @@ def get_video_transcript_with_fallback(video_id: str):
 def get_video_transcript(video_id: str):
     try:
         transcript = YouTubeTranscriptApi.get_transcript(video_id)
+        logger.debug(f"Successfully got transcript")
         return transcript
     except Exception as e:
         print(f"Exception: {e}")
